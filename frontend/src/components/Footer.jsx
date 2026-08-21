@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { HiOutlineMail, HiOutlineLocationMarker, HiOutlinePhone } from "react-icons/hi";
 import { FaInstagram, FaFacebookF, FaTwitter, FaYoutube } from "react-icons/fa";
 
 const categories = ["Running", "Casual", "Formal", "Sneakers", "Sports", "Basketball", "Training", "Slides"];
 
 export default function Footer() {
+  const { user } = useSelector((state) => state.auth);
+
   return (
     <footer className="bg-dark text-gray-400 mt-16">
       <div className="max-w-7xl mx-auto px-4 pt-14 pb-8">
@@ -49,7 +52,9 @@ export default function Footer() {
               <li><Link to="/orders" className="hover:text-white transition">My Orders</Link></li>
               <li><Link to="/wishlist" className="hover:text-white transition">Wishlist</Link></li>
               <li><Link to="/cart" className="hover:text-white transition">Cart</Link></li>
-              <li><Link to="/login" className="hover:text-white transition">Login / Register</Link></li>
+              {!user && (
+                <li><Link to="/login" className="hover:text-white transition">Login / Register</Link></li>
+              )}
             </ul>
           </div>
 

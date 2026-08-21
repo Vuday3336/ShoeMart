@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, clearAuthError } from "../store/slices/authSlice";
@@ -7,9 +7,18 @@ export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { loading, error } = useSelector((state) => state.auth);
+  const { user, loading, error } = useSelector((state) => state.auth);
 
   const [form, setForm] = useState({ email: "", password: "" });
+
+  // Already logged in — don't show the login form, just leave.
+  useEffect(() => {
+    if (user) {
+      navigate(location.state?.from?.pathname || "/", { replace: true });
+    }
+  }, [user]);
+
+  if (user) return null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

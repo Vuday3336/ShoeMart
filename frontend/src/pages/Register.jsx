@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser, clearAuthError } from "../store/slices/authSlice";
@@ -6,9 +6,16 @@ import { registerUser, clearAuthError } from "../store/slices/authSlice";
 export default function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, error } = useSelector((state) => state.auth);
+  const { user, loading, error } = useSelector((state) => state.auth);
 
   const [form, setForm] = useState({ name: "", email: "", password: "" });
+
+  // Already logged in — don't show the register form, just leave.
+  useEffect(() => {
+    if (user) navigate("/", { replace: true });
+  }, [user]);
+
+  if (user) return null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

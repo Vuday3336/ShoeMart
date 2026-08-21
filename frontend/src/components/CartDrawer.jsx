@@ -59,7 +59,7 @@ export default function CartDrawer() {
               ) : (
                 <ul className="space-y-4">
                   {items.map((item) => (
-                    <li key={item.id} className="flex gap-3">
+                    <li key={item.cart_item_id} className="flex gap-3">
                       <img
                         src={item.image_url}
                         alt={item.name}
@@ -71,14 +71,14 @@ export default function CartDrawer() {
                         <div className="flex items-center justify-between mt-2">
                           <div className="flex items-center border rounded-md">
                             <button
-                              onClick={() => dispatch(updateCartItem({ cartItemId: item.id, quantity: Math.max(1, item.quantity - 1) }))}
+                              onClick={() => dispatch(updateCartItem({ cartItemId: item.cart_item_id, quantity: Math.max(1, item.quantity - 1) }))}
                               className="p-1.5 hover:bg-gray-100"
                             >
                               <HiOutlineMinus size={12} />
                             </button>
                             <span className="px-2.5 text-sm">{item.quantity}</span>
                             <button
-                              onClick={() => dispatch(updateCartItem({ cartItemId: item.id, quantity: item.quantity + 1 }))}
+                              onClick={() => dispatch(updateCartItem({ cartItemId: item.cart_item_id, quantity: item.quantity + 1 }))}
                               className="p-1.5 hover:bg-gray-100"
                             >
                               <HiOutlinePlus size={12} />
@@ -88,7 +88,7 @@ export default function CartDrawer() {
                         </div>
                       </div>
                       <button
-                        onClick={() => dispatch(removeCartItem(item.id))}
+                        onClick={() => dispatch(removeCartItem(item.cart_item_id))}
                         className="text-gray-400 hover:text-red-600 transition self-start p-1"
                         title="Remove"
                       >
