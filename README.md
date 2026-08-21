@@ -4,7 +4,22 @@ A complete e-commerce site: **React.js + Redux Toolkit** frontend, **Node.js + E
 **PostgreSQL via Supabase** database, **JWT auth**. Features: product browsing, search & filtering,
 cart, wishlist, checkout (Cash on Delivery), order history, and order cancellation.
 
-This guide assumes **zero prior setup** and walks through everything in order. Follow it top to bottom.
+## 🔗 Live Demo
+
+| | Link | Hosted on |
+|---|---|---|
+| **Website (frontend)** | **https://shoe-mart-bay.vercel.app** | Vercel |
+| **API (backend)** | https://shoemart-backend-j595.onrender.com | Render (free tier) |
+| **API health check** | https://shoemart-backend-j595.onrender.com/ → `{"message":"ShoeMart API is running 🚀"}` | |
+| **Sample API response** | https://shoemart-backend-j595.onrender.com/api/products?limit=4 | |
+| **Source code** | https://github.com/Vuday3336/ShoeMart | GitHub |
+
+> **Note:** the backend is on Render's free tier, which spins down after 15 minutes of inactivity.
+> The **first** request after idle time can take up to ~50 seconds to wake up — this is normal free-tier
+> cold-start behavior, not a bug. Once awake, it responds instantly until it goes idle again.
+
+This guide assumes **zero prior setup** and walks through everything in order. Follow it top to bottom
+if you want to run it locally or redeploy it yourself.
 
 ---
 
