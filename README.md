@@ -232,16 +232,18 @@ Your code is now on GitHub. Add the repo link to your resume/portfolio.
 
 ### Backend → Render.com
 
+This repo includes a `render.yaml` Blueprint, so Render can configure the service automatically.
+
 1. Go to https://render.com → sign up/log in with GitHub.
-2. **New +** → **Web Service** → connect your `shoemart` GitHub repo.
-3. Settings:
-   - **Root Directory**: `backend`
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm start`
-4. Add environment variables (under "Environment"): copy every key from your local `backend/.env`
-   (`PORT`, `DATABASE_URL`, `JWT_SECRET`, `JWT_EXPIRES_IN`, `CLIENT_URL`). Set `CLIENT_URL` to your
-   frontend's deployed URL (you'll get this in the next step — come back and update it after).
-5. Click **Create Web Service**. Render gives you a URL like `https://shoemart-backend.onrender.com`.
+2. **New +** → **Blueprint** → connect your `shoemart` GitHub repo. Render reads `render.yaml` and
+   pre-fills the service (root dir `backend`, build/start commands).
+3. It will prompt you for the secret env vars marked `sync: false`: paste in `DATABASE_URL` (your
+   Supabase connection string), `JWT_SECRET` (from your local `backend/.env`), and `CLIENT_URL`
+   (leave as `http://localhost:5173` for now — you'll update it after deploying the frontend).
+4. Click **Apply**. Render gives you a URL like `https://shoemart-backend.onrender.com`.
+
+(No Blueprint? You can also do **New + → Web Service** manually with Root Directory `backend`,
+Build Command `npm install`, Start Command `npm start`, and the same env vars.)
 
 ### Frontend → Vercel
 
